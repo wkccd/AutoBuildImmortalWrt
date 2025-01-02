@@ -11,6 +11,11 @@ on:
           - friendlyarm_nanopi-r1s-h5
           - xunlong_orangepi-zero-plus
           - friendlyarm_nanopi-neo2
+          - xunlong_orangepi-pc2
+          - friendlyarm_nanopi-neo-plus2
+          - libretech_all-h3-cc-h5
+          - pine64_pine64-plus
+          - pine64_sopine-baseboard
         default: friendlyarm_nanopi-r1s-h5
       include_docker:
         description: |
