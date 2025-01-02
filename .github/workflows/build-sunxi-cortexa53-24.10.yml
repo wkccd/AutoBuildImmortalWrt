@@ -61,7 +61,7 @@ jobs:
               --user root \
               -v "${{ github.workspace }}/bin:/home/build/immortalwrt/bin" \
               -v "${{ github.workspace }}/files:/home/build/immortalwrt/files" \
-              -v "${{ github.workspace }}/sunxi-cortexa53/build.sh:/home/build/immortalwrt/build.sh" \
+              -v "${{ github.workspace }}/sunxi-cortexa53/24.10/build.sh:/home/build/immortalwrt/build.sh" \
               -e PROFILE=$profile \
               -e INCLUDE_DOCKER=$include_docker \
               -e ROOTSIZE=$size \
