@@ -84,7 +84,7 @@ jobs:
         uses: softprops/action-gh-release@v2.1.0
         with:
           tag_name: Autobuild-sunxi-cortexa53
-          files: ${{ github.workspace }}/bin/targets/sunxi/cortexa53/*.gz
+          files: ${{ github.workspace }}/bin/targets/sunxi/cortexa53/*squashfs-sdcard.img.gz
           token: ${{ secrets.GITHUB_TOKEN }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
