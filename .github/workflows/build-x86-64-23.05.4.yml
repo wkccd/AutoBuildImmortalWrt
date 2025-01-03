@@ -57,6 +57,9 @@ jobs:
           else
             echo -e "NO docker"
           fi
+      
+      - name: Generate SHA-256 hash value
+        run: sha256sum ${{ github.workspace }}/bin/targets/x86/64/immortalwrt-23.05.4-x86-64-generic-squashfs-combined-efi.img.gz > firmware.sha256
 
       - name: Create GitHub Release Info
         uses: softprops/action-gh-release@v2.1.0
@@ -73,7 +76,9 @@ jobs:
         uses: softprops/action-gh-release@v2.1.0
         with:
           tag_name: Autobuild-x86-64
-          files: ${{ github.workspace }}/bin/targets/x86/64/immortalwrt-23.05.4-x86-64-generic-squashfs-combined-efi.img.gz
+          files: |
+            ${{ github.workspace }}/bin/targets/x86/64/immortalwrt-23.05.4-x86-64-generic-squashfs-combined-efi.img.gz
+            ${{ github.workspace }}/irmware.sha256
           token: ${{ secrets.GITHUB_TOKEN }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
