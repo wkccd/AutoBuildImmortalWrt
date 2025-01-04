@@ -56,6 +56,14 @@ jobs:
           else
             echo -e "NO docker"
           fi
+      
+      - name: Generate Firmware SHA-256
+        run: |
+          cp ${{ github.workspace }}/bin/targets/x86/64/*squashfs-combined-efi.img.gz ${{ github.workspace }}
+          for file in *squashfs-combined-efi.img.gz; do
+            sha256sum "$file" > "$file.sha256"
+            sha256sum -c "$file.sha256"
+          done
 
       - name: Create GitHub Release Info
         uses: softprops/action-gh-release@v2.1.0
@@ -72,7 +80,8 @@ jobs:
         uses: softprops/action-gh-release@v2.1.0
         with:
           tag_name: Autobuild-x86-64
-          files: ${{ github.workspace }}/bin/targets/x86/64/*squashfs-combined-efi.img.gz
+          files: ${{ github.workspace }}/*squashfs-combined-efi.img.gz
+          files: ${{ github.workspace }}/*.sha256
           token: ${{ secrets.GITHUB_TOKEN }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
